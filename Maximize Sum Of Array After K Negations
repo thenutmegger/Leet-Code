@@ -1,0 +1,71 @@
+import java.util.Arrays;
+
+class Solution {
+    public int largestSumAfterKNegations(int[] nums, int k) {
+        Arrays.sort(nums);
+        
+        int negative_count = 0;
+        int a = 0;
+        int sum = 0;
+        
+        for (int element : nums){
+            if (element < a){
+                negative_count++;
+            }
+        }
+        
+        
+        if(k>negative_count){
+            for(int i =0;i<negative_count;i++){
+                nums[i] = -nums[i];
+            }
+            
+            Arrays.sort(nums);
+            
+            k = k - negative_count;
+            
+            if (k%2 == 0){
+                for(int element: nums){
+                sum = sum+element;
+            }
+                return sum;
+            
+            }
+            else {
+                nums[0] = -nums[0];
+                for(int element: nums){
+                    sum = sum + element;
+                }
+                return sum; 
+            }
+        }
+        
+        if(k<=negative_count){
+            for(int i=0;i<k;i++){
+                nums[i] = -nums[i];
+            }
+            
+        }
+        
+        
+        if(negative_count == 0 & k%2==0){
+            for(int element: nums){
+                sum = sum+element;
+            }
+            
+            return sum;
+        }
+        else if(negative_count == 0 & k%2==1){
+            nums[0] = -nums[0];
+        }
+        
+        for(int element: nums){
+                sum = sum+element;
+            }
+            
+            return sum;
+        
+        
+        
+    }
+}
