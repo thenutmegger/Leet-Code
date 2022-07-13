@@ -1,0 +1,55 @@
+//"()" -- true
+//"(){}[]" -- true
+//"(}" -- false
+//"{[]}" -- true
+//"[{()}]" -- true
+//"(([]){})" -- true
+
+// This is a stack related question. [Data structure based question.]
+
+import java.util.Stack;
+
+public class ValidParentheses {
+    public static boolean solution(String s){
+
+        if (s.length()%2 == 1 || s.length()<2){
+            return false;
+        }
+        if (s.charAt(0) == '}' || s.charAt(0) == ')' || s.charAt(0) == ']'){
+            return false;
+        }
+
+        Stack<Character> stack = new Stack<>();
+
+        stack.push(s.charAt(0));
+
+        for (int i = 1; i<s.length(); i++){
+            char a = stack.peek();
+            if (s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '['){
+                stack.push(s.charAt(i));
+            }
+            else if (s.charAt(i) == ')' && a == '('){
+                stack.pop();
+            }
+            else if (s.charAt(i) == '}' && a == '{'){
+                stack.pop();
+            }
+            else if (s.charAt(i) == ']' && a == '['){
+                stack.pop();
+            }
+            else {
+                return false;
+            }
+        }
+
+        return stack.isEmpty();
+
+    }
+
+    public static void main(String[] args) {
+        System.out.println(solution("([}}])"));
+        System.out.println(solution("({[]})"));
+        System.out.println(solution("()"));
+        System.out.println(solution("(([]){})"));
+    }
+}
