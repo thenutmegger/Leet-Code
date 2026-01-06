@@ -1,0 +1,78 @@
+public class RomanToInteger {
+
+    public static int solution(String s){
+        int sum = 0;
+        int[] arr = new int[s.length()+1];
+        arr[s.length()] = 0;
+
+        for(int i = 0; i<s.length();i++){
+            if (s.charAt(i) == 'I'){
+                arr[i] = 1;
+            }
+            else if (s.charAt(i) == 'V'){
+                arr[i] = 5;
+            }
+            else if (s.charAt(i) == 'X'){
+                arr[i] = 10;
+            }
+            else if (s.charAt(i) == 'L'){
+                arr[i] = 50;
+            }
+            else if (s.charAt(i) == 'C'){
+                arr[i] = 100;
+            }
+            else if (s.charAt(i) == 'D'){
+                arr[i] = 500;
+            }
+            else if (s.charAt(i) == 'M'){
+                arr[i] = 1000;
+            }
+            else{
+                System.out.println("XXX");
+            }
+        }
+
+        for (int i=0;i<arr.length; i++){
+            if (arr[i] == 1 && arr[i+1]==5){
+                sum = sum + 4 - 5;
+            }
+            else if (arr[i] == 1 && arr[i+1]==10){
+                sum = sum + 9 - 10;
+            }
+            else if (arr[i] == 10 && arr[i+1]==50){
+                sum = sum + 40 - 50;
+            }
+            else if (arr[i] == 10 && arr[i+1]==100){
+                sum = sum + 90 - 100;
+            }
+            else if (arr[i] == 100 && arr[i+1]==500){
+                sum = sum + 400 - 500;
+
+            }
+            else if (arr[i] == 100 && arr[i+1]==1000){
+                sum = sum + 900 - 1000;
+
+            }
+            else{
+                sum = sum + arr[i];
+            }
+        }
+
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println(solution("MCMXCIV"));
+        System.out.println();
+        System.out.println(solution("III"));
+        System.out.println();
+        System.out.println(solution("LVIII"));
+        System.out.println();
+        System.out.println(solution("IV"));
+        System.out.println();
+        System.out.println(solution("MMCDXXV"));
+        System.out.println();
+    }
+}

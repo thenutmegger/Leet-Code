@@ -1,0 +1,147 @@
+//Input: digits = [1,2,3]
+//        Output: [1,2,4]
+
+import java.util.Arrays;
+
+//Input: digits = [9]
+//        Output: [1,0]
+public class PlusOne {
+//    public static int[] plusOne(int[] digits) {
+//        long sum=0L;
+//        int len = digits.length-1;
+////        System.out.println("length = " + len);
+//        for (int i = 0; i<=digits.length-1; i++) {
+////            System.out.println("Digit = " + digits[i]);
+////            System.out.println("To be added = " +digits[i]*(long)(Math.pow(10,len)));
+////            System.out.println("10 power = " + (long)(Math.pow(10,len)));
+//            sum = sum + (long)(digits[i]*Math.pow(10,len));
+////            System.out.println("Loop sum = " + sum );
+////            System.out.println("10 power length before -- : " + len);
+//            len--;
+////            System.out.println("10 power length after -- : " + len);
+//        }
+//
+//        sum = sum+1;
+//
+//        long sum2 = sum;
+//
+////        System.out.println("Required sum = " + sum2);
+//
+//        int noOfDigits = 0;
+//
+//        while(sum>0){
+//            noOfDigits++;
+//            sum = sum/10;
+//        }
+//
+////        System.out.println("Number of digits = " + noOfDigits);
+//
+//        long[] answer = new long[noOfDigits];
+//        int[] integerAnswer = new int[noOfDigits];
+//
+//        int j =noOfDigits-1;
+//        while(sum2 > 0){
+//            answer[j] = (sum2%10);
+//            sum2 = sum2/10;
+//            j--;
+//        }
+//
+//
+//        for (int i = 0; i<noOfDigits; i++){
+//            integerAnswer[i] = (int) answer[i];
+//        }
+//        return integerAnswer;
+//    }
+
+    public static int[] plusOne(int[] digits) {
+
+        int[] arr;
+        int last_9_counter = 0;
+
+        if (digits[digits.length -1] == 9){
+
+            for(int i = digits.length-1; i>=0; i--){
+                if (digits[i] == 9){
+                    last_9_counter++;
+                }
+
+                else {
+                    break;
+                }
+            }
+
+
+            if (last_9_counter < digits.length) {
+                arr = new int[digits.length];
+                for (int j = 0; j <= digits.length - 1 - last_9_counter - 1; j++) {
+                    arr[j] = digits[j];
+                }
+
+                arr[digits.length - 1 - last_9_counter] = digits[digits.length - 1 - last_9_counter] + 1;
+
+                for (int k = digits.length - last_9_counter; k < arr.length; k++) {
+                    arr[k] = 0;
+                }
+            }
+
+            else {
+                arr = new int[digits.length+1];
+                arr[0] = 1;
+                for (int i  = 1; i< arr.length; i++){
+                    arr[i] = 0;
+                }
+            }
+        }
+
+        else {
+            arr = new int[digits.length];
+
+            for (int i = 0 ; i <= digits.length -2; i++){
+                arr[i] = digits[i];
+            }
+
+            arr[digits.length -1] = digits[digits.length-1] + 1;
+        }
+
+        return arr;
+    }
+
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 2, 3};
+        System.out.println(Arrays.toString(plusOne(arr1)));
+
+        int[] arr2 ={1,0};
+        System.out.println(Arrays.toString(plusOne(arr2)));
+
+        int[] arr3 = {9,8,7,6,5,4,3,2,1,0};
+        System.out.println(Arrays.toString(plusOne(arr3)));
+
+        int[] arr4 = {6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3};
+        System.out.println(Arrays.toString(plusOne(arr4)));
+
+        int[] arr6 = {8};
+        System.out.println(Arrays.toString(plusOne(arr6)));
+
+        int[] arr9 = {8,9,9};
+        System.out.println(Arrays.toString(plusOne(arr9)));
+
+        int[] arr8 = {9,9,9};
+        System.out.println(Arrays.toString(plusOne(arr8)));
+
+        int[] arr7 = {9,9};
+        System.out.println(Arrays.toString(plusOne(arr7)));
+
+        int[] arr5 = {9};
+        System.out.println(Arrays.toString(plusOne(arr5)));
+
+        int[] arr10 = {8,9,9,9};
+        System.out.println(Arrays.toString(plusOne(arr10)));
+
+        int[] arr11 ={9,8,9};
+        System.out.println(Arrays.toString(plusOne(arr11)));
+
+
+
+    }
+}
